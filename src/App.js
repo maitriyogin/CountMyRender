@@ -10,14 +10,17 @@ function App() {
     b: 0
   })
   const totalCount = Object.values(countState).reduce((a,c) => a + c, 0)
-  const handleUpdateCount = (id) => setCountState({...countState, [id]: countState[id]+1})
+  const handleUpdateCount = (id) => {
+    console.log("---------------- HANDLE UPDATE COUNT", id)
+    setCountState({...countState, [id]: countState[id]+1})
+  }
   useRerenderCount('App')
   return (
     <div className="App">
       <header className="App-header">
+        Render Counter
+        <h1>Total Count : {totalCount}</h1>
         <p>
-          Render Counter
-          <h1>Total Count : {totalCount}</h1>
           <Counter handleUpdateCount={handleUpdateCount} count={countState['a']} id={'a'}/>
           <Counter handleUpdateCount={handleUpdateCount} count={countState['b']} id={'b'}/>
         </p>
